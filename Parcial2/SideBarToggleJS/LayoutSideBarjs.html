@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        .head{
+            border: 2px solid rgb(255, 0, 30);
+            background-color: aqua;
+            color: blue;
+            float: inline-start;
+            height: 10%;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+        }
+        .cont{
+            border: 2px solid blue;
+            background-color: aqua;
+            color: blue;
+            height: 90%;
+            float: left;
+        }
+        #sidebar{
+            width: 30%;
+        }
+        #content{
+            float: right;
+            width: 70%;
+        }
+        /*input#toggle{
+            display: none;
+        }*/
+
+        .sidebarEscondido{
+
+            display:none;
+        }
+        
+        
+        /*position*/
+        #content.contenidoal100{
+            width: 100% ;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+    <div class="head" id="header"><h3>Header</h3></div>    
+
+    <div class="cont" id="sidebar"><h3>Sidebar</h3></div>
+
+    <div class="cont" id="content">
+        <button id="btn"  type="button"> Togglemenu </button>
+    <h3>content</h3>
+    </div>
+    <script>
+       /*let btnMenu =  document.getElementById("btn")
+       btnMenu.addEventListener("click", function()
+       {
+        console.log("Click en el boton")
+        }  )*/
+
+        document.getElementById("btn").addEventListener("click", function(){
+            console.log("click en el boton")
+            document.getElementById("sidebar").classList.toggle("sidebarEscondido");
+            document.getElementById("content").classList.toggle("contenidoal100");
+
+        })
+    </script>
+</body>
+</html>
