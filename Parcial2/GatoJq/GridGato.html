@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contenedor
+        {
+            height: 100vh;
+            width: 100vw;
+            background-color: blue;         
+            display: grid;
+            grid-template-columns: 150px 150px 150px;
+            grid-template-rows: 150px 150px 150px;
+            justify-content: center;
+            justify-items: stretch;
+            align-items: stretch;
+        }
+
+        .caja
+        {
+            
+            background-color: aqua;
+            border: 10px solid blue;
+            font-size: 60px;
+            text-align: center;
+            line-height: 3em;
+        }
+
+        #caja11
+        {
+            align-self: center;
+            justify-self: center;
+            
+        }
+
+        .Imagen1{
+             height: 50px;
+             width: 70px;
+        }
+        .Imagen2{
+             height: 50px;
+             width: 70px;
+        }
+    </style>
+</head>
+<body>
+    <div id="cont" class="contenedor">
+        <div id="caja1" class="caja"></div>
+        <div id="caja2" class="caja"></div>
+        <div id="caja3" class="caja"></div>
+        <div id="caja4" class="caja"></div>
+        <div id="caja5" class="caja"></div>
+        <div id="caja6" class="caja"></div>
+        <div id="caja7" class="caja"></div>
+        <div id="caja8" class="caja"></div>
+        <div id="caja9" class="caja"></div>
+        <div id="caja11" ><button id="btnLim" type="button">Limpiar</button></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.all.min.js"></script>
+
+    <script>   
+        let jugadorUno = true;
+        let cajas = document.getElementsByClassName("caja");
+
+        for(let i = 0; i<cajas.length; i++){
+            cajas[i].addEventListener('click', movimientoUsuario);
+        }
+
+        function movimientoUsuario(e){
+            let valorCelda = e.target.innerHTML;
+            if(!valorCelda.length){
+            e.target.innerHTML = jugadorUno? '<img alt="X" src="https://i.pinimg.com/originals/aa/e3/f7/aae3f7d16a4a120e17d70b985471df27.gif" style="height: 65px;width: 50px;">' : '<img alt="O" src = "https://i.pinimg.com/474x/81/f9/8e/81f98e59b20657807fa6d95da61b167c.jpg" style="height: 65px;width: 50px;">';
+            jugadorUno = !jugadorUno;
+
+                verificarLinea(0, 1, 2);
+                verificarLinea(3, 4, 5);
+                verificarLinea(6, 7, 8);
+                verificarLinea(0, 3, 6);
+                verificarLinea(1, 4, 7);
+                verificarLinea(2, 5, 8);
+                verificarLinea(0, 4, 8);
+                verificarLinea(6, 4, 2);
+            }
+        }
+
+        function verificarLinea(c1, c2, c3) {
+            if (
+                cajas[c1].innerHTML.length &&
+                cajas[c1].innerHTML == cajas[c2].innerHTML &&
+                cajas[c2].innerHTML == cajas[c3].innerHTML
+            ) {
+            let ganador = jugadorUno ? "O" : "X";
+            Swal.fire({
+            title: '¡Tenemos un ganador!',
+            text: 'El ganador es el jugador:' + ganador,
+            icon: 'success'
+        });
+            }
+         
+        }
+
+        document.getElementById("btnLim").addEventListener("click",function(e){
+            let cajas = document.getElementsByClassName("caja");
+            for(const elemnto of cajas){
+                console.log(elemnto);
+                elemnto.innerText="";
+            }
+        })
+
+    </script>
+</body>
+</html>

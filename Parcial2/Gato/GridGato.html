@@ -35,11 +35,6 @@
             font-size: 60px;
             text-align: center;
             line-height: 3em;
-            
-            
-
-
-
         }
 
         #caja11
@@ -114,6 +109,7 @@
 
         })
 
+        //Forma para hacerlo con la libreria Jquery y ahorrando lineas de codigo
         /*$('document').ready(function(){
             
             var xo = "x";
@@ -135,7 +131,7 @@
             $("#btnlim").click(function(){
 
                 $(".caja").each(function(){
-                        console.log(this);
+                        console.log(this.text(""));
                 });
                 
             });
