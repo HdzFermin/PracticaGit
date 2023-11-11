@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <select id="CategoriasChuck"></select>
+    <button id="Peticion">Peticion</button>
+    <div id="chiste"></div>
+
+    <script>
+        window.onload = function () {
+            // Obtén las categorías al cargar la página
+            fetch(`https://api.chucknorris.io/jokes/categories`)
+                .then(respuesta => respuesta.json())
+                .then(function (dato) {
+                    dato.forEach(elemento => {
+                        let opcion = document.createElement("option");
+                        opcion.value = elemento;
+                        opcion.innerText = elemento;
+                        document.getElementById("CategoriasChuck").appendChild(opcion);
+                    });
+                });
+
+            // Añade un evento de clic al botón "Peticion"
+            document.getElementById("Peticion").addEventListener("click", function () {
+                // Obtén la categoría seleccionada
+                let categoriaSeleccionada = document.getElementById("CategoriasChuck").value;
+
+                // Realiza una solicitud para obtener un chiste de la categoría seleccionada
+                fetch(`https://api.chucknorris.io/jokes/random?category=${categoriaSeleccionada}`)
+                    .then(respuesta => respuesta.json())
+                    .then(function (chiste) {
+                        // Muestra el chiste en el elemento con id "chiste"
+                        document.getElementById("chiste").innerText = chiste.value;
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>
