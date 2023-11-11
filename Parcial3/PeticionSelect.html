@@ -14,7 +14,7 @@
 
     <script>
         window.onload = function () {
-            // Obtén las categorías al cargar la página
+            // se obtienen las categorías al cargar la página
             fetch(`https://api.chucknorris.io/jokes/categories`)
                 .then(respuesta => respuesta.json())
                 .then(function (dato) {
@@ -26,12 +26,12 @@
                     });
                 });
 
-            // Añade un evento de clic al botón "Peticion"
+            // se Añade un evento de clic al botón "Peticion"
             document.getElementById("Peticion").addEventListener("click", function () {
-                // Obtén la categoría seleccionada
+                // se obtiene la categoría seleccionada
                 let categoriaSeleccionada = document.getElementById("CategoriasChuck").value;
 
-                // Realiza una solicitud para obtener un chiste de la categoría seleccionada
+                //se  Realiza una solicitud para obtener un chiste de la categoría seleccionada
                 fetch(`https://api.chucknorris.io/jokes/random?category=${categoriaSeleccionada}`)
                     .then(respuesta => respuesta.json())
                     .then(function (chiste) {
