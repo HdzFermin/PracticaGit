@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">Peticion XMLHpRequest</button>
+    <div id="pokemon"></div>
+    <script>
+        window.onload = function(){
+            
+        }
+        document.getElementById("btn").addEventListener("click", () => {
+
+        const xhr = new XMLHttpRequest();
+
+        xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+        console.log(this.responseText);
+        let objetoRespuesta = JSON.parse(this.responseText);
+        console.log(objetoRespuesta.value);
+        document.getElementById("chuck").innerText= objetoRespuesta.value;
+        
+        }
+});
+
+xhr.open("GET", "https://api.chucknorris.io/jokes/random",false);
+
+xhr.send();
+});
+
+    document.getElementById("btnFetch").addEventListener("click", () => {
+        fetch("Api url")
+        .then( objetoRespuesta => objetoRespuesta.json())
+        .then( datoJson => document.getElementById("Chuck").innerText=datoJson.value);
+    });
+
+    document.getElementById("btnAsync").addEventListener("click", async () => {
+        let objetoRespuesta = await fetch("Api url")
+        let datoJson = await objetoRespuesta.json();
+        document.getElementById("chuck").innerText = datoJson.value
+    });
+
+    document.getElementById("btnJQC").addEventListener("click",  () => {
+        $.getJSON("api url", function(datoJson){
+            document.getElementById("chuck").innerText = datoJson.value
+        })
+    });
+
+    
+
+    </script>
+    
+</body>
+</html>
