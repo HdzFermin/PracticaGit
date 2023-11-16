@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select  id="razas"></select>
+    <button id="Peticion">Peticion</button>
+    <div id="chiste"></div>
+
+    <script>
+        window.onload=function(){ 
+                fetch(`https://dog.ceo/api/breeds/list/all`)
+                    .then(respuesta => respuesta.json())
+                    .then(function(dato){
+                        for (const property in dato.message){
+                            console.log(dato.message);
+                            let option = document.createElement("option")
+                            option.value = property;
+                            option.innerText = property;
+                            document.getElementById("razas").appendChild(option)
+                        }
+                        
+                    });
+                }
+
+                document.getElementById("Peticion").addEventListener("click", () => {
+                    let option = document.getElementById("razas").value;
+                    fetch('https://dog.ceo/api/breeds/image/random')
+                    .then(respuesta => respuesta.json())
+                    then(function(dato){
+                        document.getElementById("fotoperro").src = 
+                    }
+                })
+            
+                       
+                    
+                                    
+                        
+                    
+            
+    </script>
+</body>
+</html>
